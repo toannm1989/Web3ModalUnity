@@ -35,13 +35,21 @@ namespace WalletConnect.Web3Modal
 
         public async Task<GetWalletsResponse> GetWallets(int page, int count, string search = null)
         {
+
+            UnityEngine.Debug.Log($"bienvt start send webrequest");
+            UnityEngine.Debug.Log($"page {page}");
+            UnityEngine.Debug.Log($"entries {count}");
+            UnityEngine.Debug.Log($"search {search}");
+            UnityEngine.Debug.Log($"Platform {Platform}");
+            UnityEngine.Debug.Log($"_includedWalletIdsString {_includedWalletIdsString}");
+            UnityEngine.Debug.Log($"_excludedWalletIdsString {_excludedWalletIdsString}");
             if (page < 1)
                 throw new ArgumentOutOfRangeException(nameof(page), "Page must be greater than 0");
 
             if (count < 1)
                 throw new ArgumentOutOfRangeException(nameof(count), "Count must be greater than 0");
 
-
+            
             return await _httpClient.GetAsync<GetWalletsResponse>("getWallets", new Dictionary<string, string>()
             {
                 {"page", page.ToString()},

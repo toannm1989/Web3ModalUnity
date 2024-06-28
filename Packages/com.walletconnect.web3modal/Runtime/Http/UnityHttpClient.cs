@@ -186,12 +186,15 @@ namespace WalletConnect.Web3Modal.Http
 
             handle.completed += _ =>
             {
+                Debug.LogError($"bienvt webrequest response with status: {uwr.result}");
+
                 if (uwr.result != UnityWebRequest.Result.Success)
                 {
                     tcs.SetException(new Exception($"Failed to send web request: {uwr.error}. Url: {url.ToString()}")); // TODO: use custom ex type
                     uwr.Dispose();
                     return;
                 }
+                Debug.Log($"bienvt webrequest response {uwr.downloadHandler.text}");
 
                 tcs.SetResult(new HttpResponseContext(uwr.downloadHandler.data, uwr.responseCode, uwr.GetResponseHeaders()));
                 uwr.Dispose();
