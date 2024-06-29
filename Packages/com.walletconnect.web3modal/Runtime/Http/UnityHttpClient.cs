@@ -79,6 +79,8 @@ namespace WalletConnect.Web3Modal.Http
         public T GetResponseAs<T>()
         {
             var utf8String = Encoding.UTF8.GetString(Bytes);
+            Debug.LogError($"[WalletConnect.Web3Modal.Http.HttpClientDecorator] Bienvt get wallets: {utf8String}", this);
+            Debug.LogWarning(Type.GetTypeCode(typeof(T)).ToString());
             if (Type.GetTypeCode(typeof(T)) == TypeCode.String)
                 return (T)Convert.ChangeType(utf8String, typeof(T));
             return JsonConvert.DeserializeObject<T>(utf8String);
